@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque-se | Vendas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-box-open logo-icon"></i>
+                <h2>Estoque-se</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cadastro.html">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Cadastro</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="cadastro.html?tab=new">Cadastrar novo produto</a></li>
+                            <li><a href="cadastro.html?tab=existing">Adicionar produto existente</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="vendas.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Vendas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="relatorio.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Relatório</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button id="toggle-sidebar" class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">Registrar Vendas</div>
+                <div class="header-actions">
+                    <button id="logout-btn" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Vendas Content -->
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-header">
+                        <h3>Registrar Venda</h3>
+                        <p>Registre a venda de produtos do estoque</p>
+                    </div>
+                    <div class="dashboard-card-body">
+                        <form id="sales-form">
+                            <div class="form-group">
+                                <label for="sale-product">Produto</label>
+                                <select id="sale-product" required>
+                                    <option value="">Selecione um produto</option>
+                                    <!-- Populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sale-quantity">Quantidade</label>
+                                <input type="number" id="sale-quantity" min="1" value="1" required>
+                                <p class="input-help" id="stock-info">Disponível em estoque: 0</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="sale-date">Data da Venda</label>
+                                <input type="date" id="sale-date" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Registrar Venda</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/vendas.js"></script>
+</body>
+</html>

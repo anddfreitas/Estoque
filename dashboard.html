@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque-se | Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard-spacing.css"> <!-- Novo arquivo apenas para espaçamentos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar (sem alterações) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-box-open logo-icon"></i>
+                <h2>Estoque-se</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cadastro.html">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Cadastro</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="cadastro.html?tab=new">Cadastrar novo produto</a></li>
+                            <li><a href="cadastro.html?tab=existing">Adicionar produto existente</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="vendas.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Vendas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="relatorio.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Relatório</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button id="toggle-sidebar" class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">Dashboard</div>
+                <div class="header-actions">
+                    <button id="logout-btn" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Produtos em Estoque</h3>
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-card-value" id="total-products">0</div>
+                        <div class="stat-card-info" id="total-value">Valor total: R$ 0,00</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Vendas Realizadas</h3>
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-card-value" id="total-sales">0</div>
+                        <div class="stat-card-info" id="total-sales-value">Valor total: R$ 0,00</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Entradas Recentes</h3>
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="stat-card-value" id="recent-entries">0</div>
+                        <div class="stat-card-info">Nos últimos 30 dias</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <h3>Saídas Recentes</h3>
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="stat-card-value" id="recent-sales">0</div>
+                        <div class="stat-card-info">Nos últimos 30 dias</div>
+                    </div>
+                </div>
+
+                <!-- NOVO: Gráficos combinados em um único card -->
+                <div class="dashboard-card chart-card modern-card">
+                    <div class="dashboard-card-header">
+                        <div class="tabs chart-tabs">
+                            <button class="chart-tab active" data-chart="monthly">Visão Mensal</button>
+                            <button class="chart-tab" data-chart="daily">Visão Diária</button>
+                        </div>
+                    </div>
+                    <div class="dashboard-card-body">
+                        <div class="chart-container active" id="monthly-chart-container">
+                            <canvas id="overview-chart"></canvas>
+                        </div>
+                        <div class="chart-container" id="daily-chart-container">
+                            <canvas id="daily-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entradas e Saídas com Seletor de Período -->
+                <div class="dashboard-grid two-columns">
+                    <div class="dashboard-card modern-card">
+                        <div class="dashboard-card-header">
+                            <div class="header-with-filter">
+                                <div>
+                                    <h3>Últimas Entradas</h3>
+                                    <p>Entradas recentes no estoque</p>
+                                </div>
+                                <div class="period-selector">
+                                    <button class="period-btn active" data-period="1" data-target="entries">1d</button>
+                                    <button class="period-btn" data-period="7" data-target="entries">7d</button>
+                                    <button class="period-btn" data-period="30" data-target="entries">30d</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card-body">
+                            <div class="table-container">
+                                <table id="recent-entries-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor</th>
+                                            <th>Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card modern-card">
+                        <div class="dashboard-card-header">
+                            <div class="header-with-filter">
+                                <div>
+                                    <h3>Últimas Vendas</h3>
+                                    <p>Vendas recentes realizadas</p>
+                                </div>
+                                <div class="period-selector">
+                                    <button class="period-btn active" data-period="1" data-target="sales">1d</button>
+                                    <button class="period-btn" data-period="7" data-target="sales">7d</button>
+                                    <button class="period-btn" data-period="30" data-target="sales">30d</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card-body">
+                            <div class="table-container">
+                                <table id="recent-sales-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor</th>
+                                            <th>Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Últimas Transações -->
+                <div class="dashboard-card modern-card">
+                    <div class="dashboard-card-header">
+                        <h3>Últimas Transações</h3>
+                        <p>As transações mais recentes</p>
+                    </div>
+                    <div class="dashboard-card-body">
+                        <div class="table-container">
+                            <table id="recent-transactions">
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Tipo</th>
+                                        <th>Quantidade</th>
+                                        <th>Valor</th>
+                                        <th>Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

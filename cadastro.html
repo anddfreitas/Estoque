@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque-se | Cadastro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-box-open logo-icon"></i>
+                <h2>Estoque-se</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="cadastro.html">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Cadastro</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="cadastro.html?tab=new">Cadastrar novo produto</a></li>
+                            <li><a href="cadastro.html?tab=existing">Adicionar produto existente</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="vendas.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Vendas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="relatorio.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Relatório</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button id="toggle-sidebar" class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">Cadastro de Produtos</div>
+                <div class="header-actions">
+                    <button id="logout-btn" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Cadastro Content -->
+            <div class="dashboard-content">
+                <div class="tabs">
+                    <div class="tab-header">
+                        <button class="tab-btn active" data-tab="new">Novo Produto</button>
+                        <button class="tab-btn" data-tab="existing">Adicionar Existente</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <!-- New Product Tab -->
+                        <div class="tab-pane active" id="new">
+                            <div class="dashboard-card">
+                                <div class="dashboard-card-header">
+                                    <h3>Cadastrar Novo Produto</h3>
+                                    <p>Adicione um novo produto ao estoque</p>
+                                </div>
+                                <div class="dashboard-card-body">
+                                    <form id="new-product-form">
+                                        <div class="form-group">
+                                            <label for="product-name">Nome do Produto</label>
+                                            <input type="text" id="product-name" placeholder="Nome do produto" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="product-quantity">Quantidade</label>
+                                            <input type="number" id="product-quantity" min="1" value="1" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="product-price">Preço (R$)</label>
+                                            <input type="number" id="product-price" min="0.01" step="0.01" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Existing Product Tab -->
+                        <div class="tab-pane" id="existing">
+                            <div class="dashboard-card">
+                                <div class="dashboard-card-header">
+                                    <h3>Adicionar ao Estoque</h3>
+                                    <p>Adicione quantidade a um produto existente</p>
+                                </div>
+                                <div class="dashboard-card-body">
+                                    <form id="add-existing-form">
+                                        <div class="form-group">
+                                            <label for="existing-product">Produto</label>
+                                            <select id="existing-product" required>
+                                                <option value="">Selecione um produto</option>
+                                                <!-- Populated by JavaScript -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="add-quantity">Quantidade a adicionar</label>
+                                            <input type="number" id="add-quantity" min="1" value="1" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Adicionar ao Estoque</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/cadastro.js"></script>
+</body>
+</html>

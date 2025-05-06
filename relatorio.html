@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque-se | Relatório</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-box-open logo-icon"></i>
+                <h2>Estoque-se</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cadastro.html">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Cadastro</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="cadastro.html?tab=new">Cadastrar novo produto</a></li>
+                            <li><a href="cadastro.html?tab=existing">Adicionar produto existente</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="vendas.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Vendas</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="relatorio.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Relatório</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button id="toggle-sidebar" class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">Relatório de Transações</div>
+                <div class="header-actions">
+                    <button id="logout-btn" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Relatório Content -->
+            <div class="dashboard-content">
+                <div class="tabs">
+                    <div class="tab-header">
+                        <button class="tab-btn active" data-tab="all">Todas</button>
+                        <button class="tab-btn" data-tab="entries">Entradas</button>
+                        <button class="tab-btn" data-tab="sales">Saídas</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <!-- All Transactions Tab -->
+                        <div class="tab-pane active" id="all">
+                            <div class="dashboard-card">
+                                <div class="dashboard-card-header">
+                                    <h3>Todas as Transações</h3>
+                                    <p>Histórico completo de entradas e saídas</p>
+                                </div>
+                                <div class="dashboard-card-body">
+                                    <div class="table-container">
+                                        <table id="all-transactions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produto</th>
+                                                    <th>Tipo</th>
+                                                    <th>Quantidade</th>
+                                                    <th>Valor</th>
+                                                    <th>Data</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Entries Tab -->
+                        <div class="tab-pane" id="entries">
+                            <div class="dashboard-card">
+                                <div class="dashboard-card-header">
+                                    <h3>Entradas de Produtos</h3>
+                                    <p>Histórico de todas as entradas no estoque</p>
+                                </div>
+                                <div class="dashboard-card-body">
+                                    <div class="table-container">
+                                        <table id="entries-transactions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produto</th>
+                                                    <th>Quantidade</th>
+                                                    <th>Valor</th>
+                                                    <th>Data</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sales Tab -->
+                        <div class="tab-pane" id="sales">
+                            <div class="dashboard-card">
+                                <div class="dashboard-card-header">
+                                    <h3>Saídas de Produtos</h3>
+                                    <p>Histórico de todas as vendas realizadas</p>
+                                </div>
+                                <div class="dashboard-card-body">
+                                    <div class="table-container">
+                                        <table id="sales-transactions">
+                                            <thead>
+                                                <tr>
+                                                    <th>Produto</th>
+                                                    <th>Quantidade</th>
+                                                    <th>Valor</th>
+                                                    <th>Data</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Populated by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/relatorio.js"></script>
+</body>
+</html>

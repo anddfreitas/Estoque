@@ -1,0 +1,30 @@
+/* Arquivo para ajustar apenas o espaçamento entre os elementos do dashboard */
+
+/* Espaçamento consistente entre os elementos principais */
+.dashboard-content {
+    padding: 20px;
+}
+
+/* Adiciona espaçamento entre os cards */
+.stats-grid {
+    margin-bottom: 24px;
+}
+
+.dashboard-card {
+    margin-bottom: 24px;
+}
+
+/* Último elemento não precisa de margem inferior */
+.dashboard-content > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Ajuste específico para o card de gráficos */
+.chart-card {
+    margin-bottom: 24px;
+}
+
+/* Ajuste para o grid de dois cards */
+.dashboard-grid {
+    margin-bottom: 24px;
+}
