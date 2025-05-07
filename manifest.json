@@ -1,0 +1,26 @@
+{
+  "background_color": "#4f5963",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "estoque-se",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "estoque-se",
+  "start_url": "index.html",
+  "theme_color": "#4f5963",
+  "id": "br.dev.ufersa.dev.group-02.anderson",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
