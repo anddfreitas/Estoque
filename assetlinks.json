@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "br.dev.ufersa.dev.group_02.anderson.twa",
+        "sha256_cert_fingerprints": ["B8:A1:92:55:91:C8:40:9A:35:E3:70:73:CA:B4:3B:61:E5:CA:43:D3:27:20:CA:DA:AA:41:8B:0D:EA:B8:0F:B6"]
+      }
+    }]

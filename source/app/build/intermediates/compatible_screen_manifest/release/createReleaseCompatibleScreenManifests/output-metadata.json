@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "COMPATIBLE_SCREEN_MANIFEST",
+    "kind": "Directory"
+  },
+  "applicationId": "br.dev.ufersa.dev.group_02.anderson.twa",
+  "variantName": "release",
+  "elements": []
+}
